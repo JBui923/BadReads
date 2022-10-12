@@ -1,6 +1,3 @@
-import os
-environment = os.getenv("FLASK_ENV")
-
 from __future__ import with_statement
 
 import logging
@@ -9,6 +6,8 @@ from logging.config import fileConfig
 from flask import current_app
 
 from alembic import context
+import os
+environment = os.getenv("FLASK_ENV")
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
