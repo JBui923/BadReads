@@ -1,8 +1,8 @@
 from __future__ import with_statement
-
+from sqlalchemy import engine_from_config
 import logging
 from logging.config import fileConfig
-
+from sqlalchemy import pool
 from flask import current_app
 
 from alembic import context
@@ -46,6 +46,7 @@ def run_migrations_offline():
     script output.
 
     """
+    # print("offline")
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
         url=url, target_metadata=target_metadata, literal_binds=True
@@ -62,6 +63,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
+    # print("online")
 
     # this callback is used to prevent an auto-migration from being generated
     # when there are no changes to the schema
@@ -117,7 +119,7 @@ def run_migrations_online():
 #             context.run_migrations()
 
 
-# if context.is_offline_mode():
-#     run_migrations_offline()
-# else:
-#     run_migrations_online()
+if context.is_offline_mode():
+    run_migrations_offline()
+else:
+    run_migrations_online()
