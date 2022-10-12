@@ -1,9 +1,12 @@
 from .db import db
 from .bookshelves_books import bookshelves_books
-
+import os
+environment = os.getenv("FLASK_ENV")
 
 class Bookshelf(db.Model):
     __tablename__ = "bookshelves"
+    if environment == "production":
+        __table_args__={'schema': 'badreadstest'}
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)

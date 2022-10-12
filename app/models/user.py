@@ -1,10 +1,13 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import os
+environment = os.getenv("FLASK_ENV")
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
-
+    if environment == "production":
+        __table_args__={'schema': 'badreadstest'}
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)

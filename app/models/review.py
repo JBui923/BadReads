@@ -1,10 +1,12 @@
 from .db import db
 from datetime import datetime
-
+import os
+environment = os.getenv("FLASK_ENV")
 
 class Review(db.Model):
     __tablename__ = "reviews"
-
+    if environment == "production":
+        __table_args__={'schema': 'badreadstest'}
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey("books.id"), nullable=False)

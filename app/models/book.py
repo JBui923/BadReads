@@ -1,10 +1,13 @@
+import os
+environment = os.getenv("FLASK_ENV")
 from .db import db
 from .bookshelves_books import bookshelves_books
 from datetime import datetime
 
-
 class Book(db.Model):
     __tablename__ = "books"
+    if environment == "production":
+        __table_args__={'schema': 'badreadstest'}
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
