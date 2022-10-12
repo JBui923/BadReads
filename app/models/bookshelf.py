@@ -9,7 +9,7 @@ class Bookshelf(db.Model):
         __table_args__={'schema': 'badreadstest'}
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     default = db.Column(db.Boolean, nullable=False)
     name = db.Column(db.String(255), nullable=False)
 
