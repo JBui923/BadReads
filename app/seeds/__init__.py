@@ -20,7 +20,7 @@ def seed():
         db.session.execute('TRUNCATE table badreadstest.users RESTART IDENTITY CASCADE;')
         db.session.execute('TRUNCATE table badreadstest.books RESTART IDENTITY CASCADE;')
         db.session.execute('TRUNCATE table badreadstest.reviews RESTART IDENTITY CASCADE;')
-        db.session.execute('TRUNCATE table badreadstest.books_bookshelves RESTART IDENTITY CASCADE;')
+        db.session.execute('TRUNCATE table badreadstest.bookshelves_books RESTART IDENTITY CASCADE;')
         db.session.commit()
     seed_users()
     seed_books_bookshelves()
