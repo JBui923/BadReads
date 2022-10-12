@@ -18,7 +18,7 @@ def seed():
         # Before seeding, truncate all tables prefixed with schema name
         # Add a truncate command for each table that will be seeded.
         db.session.execute('TRUNCATE table badreadstest.users RESTART IDENTITY CASCADE;')
-        db.session.execute('TRUNCATE table badreadstest.books_list RESTART IDENTITY CASCADE;')
+        db.session.execute('TRUNCATE table badreadstest.books RESTART IDENTITY CASCADE;')
         db.session.execute('TRUNCATE table badreadstest.reviews RESTART IDENTITY CASCADE;')
         db.session.execute('TRUNCATE table badreadstest.books_bookshelves RESTART IDENTITY CASCADE;')
         db.session.commit()
